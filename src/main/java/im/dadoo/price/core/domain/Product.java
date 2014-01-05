@@ -33,7 +33,7 @@ public class Product implements Serializable {
   
   public Product() {}
   
-  public static Product create(String name, Brand brand, CategoryBrand categoryBrand) {
+  public static Product create(String name, CategoryBrand categoryBrand) {
     Product product = new Product();
     product.name = name;
     product.setCategoryBrand(categoryBrand);
