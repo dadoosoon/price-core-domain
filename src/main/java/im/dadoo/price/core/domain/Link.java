@@ -24,18 +24,18 @@ public class Link implements Serializable {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
-  @Column
+  @Column(nullable = false)
   private Integer amount;
 
-  @Column
+  @Column(nullable = false)
   private String url;
 
   @ManyToOne
-  @JoinColumn(name = "seller_id")
+  @JoinColumn(name = "seller_id", nullable = false)
   private Seller seller;
 
   @ManyToOne
-  @JoinColumn(name = "product_id")
+  @JoinColumn(name = "product_id", nullable = false)
   private Product product;
   
   public Link() {}

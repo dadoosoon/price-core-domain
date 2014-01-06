@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -28,17 +29,17 @@ public class Record implements Serializable {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
   
-  @Column
+  @Column(nullable = true)
   private Double price;
   
-  @Column
+  @Column(nullable = true)
   private Integer stock;
   
   @ManyToOne
-  @JoinColumn(name = "link_id")
+  @JoinColumn(name = "link_id", nullable = false)
   private Link link;
   
-  @Column
+  @Column(nullable = false)
   private Long datetime;
   
   public Record() {}
@@ -61,7 +62,7 @@ public class Record implements Serializable {
     sb.append("price:").append(price).append(",");
     sb.append("stock:").append(stock).append(",");
     sb.append("link:").append(link).append(",");
-    sb.append("datetime:").append(datetime);
+    sb.append("datetime:").append(datetime).append(",");
     sb.append("}");
     return sb.toString();
   }

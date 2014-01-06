@@ -24,11 +24,11 @@ public class Category implements Serializable {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
-  @Column
+  @Column(length = 50, nullable = false, unique = true)
   private String name;
 
   @ManyToOne
-  @JoinColumn(name = "sup_id")
+  @JoinColumn(name = "sup_id", nullable = true)
   private Category sup;
   
   public Category() {}

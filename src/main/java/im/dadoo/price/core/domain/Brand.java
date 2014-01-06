@@ -7,7 +7,6 @@
 package im.dadoo.price.core.domain;
 
 import java.io.Serializable;
-import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,10 +22,10 @@ public class Brand implements Serializable {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
  
-  @Column
+  @Column(length = 50, nullable = false, unique = true)
   private String name;
   
-  @Column
+  @Column(nullable = true)
   private String info;
   
   public Brand() {}

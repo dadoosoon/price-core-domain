@@ -24,11 +24,11 @@ public class CategoryBrand implements Serializable {
   private Integer id;
 
   @ManyToOne
-  @JoinColumn(name = "category_id")
+  @JoinColumn(name = "category_id", nullable = false)
   private Category category;
 
   @ManyToOne
-  @JoinColumn(name = "brand_id")
+  @JoinColumn(name = "brand_id", nullable = false)
   private Brand brand;
   
   public CategoryBrand() {}

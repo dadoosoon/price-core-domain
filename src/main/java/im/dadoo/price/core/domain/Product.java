@@ -24,11 +24,11 @@ public class Product implements Serializable {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
-  @Column
+  @Column(length = 100, nullable = false, unique = true)
   private String name;
   
   @ManyToOne
-  @JoinColumn(name = "category_brand_id")
+  @JoinColumn(name = "category_brand_id", nullable = false)
   private CategoryBrand categoryBrand;
   
   public Product() {}

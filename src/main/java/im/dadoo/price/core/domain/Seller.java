@@ -22,10 +22,10 @@ public class Seller implements Serializable {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
   
-  @Column
+  @Column(length = 50, nullable = false, unique = true)
   private String name;
 
-  @Column
+  @Column(length = 100, nullable = true)
   private String site;
   
   public Seller() {}
