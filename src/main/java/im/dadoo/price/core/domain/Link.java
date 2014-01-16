@@ -19,7 +19,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "t_link")
-public class Link implements Serializable, Comparable<Link>{
+public class Link implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -132,27 +132,5 @@ public class Link implements Serializable, Comparable<Link>{
    */
   public void setProduct(Product product) {
     this.product = product;
-  }
-
-  @Override
-  public int compareTo(Link link) {
-    if (link != null) {
-      return this.id - link.id;
-    } else {
-      return 1;
-    }
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    Link link = (Link)obj;
-    return link != null && link.id == this.id;
-  }
-
-  @Override
-  public int hashCode() {
-    int hash = 3;
-    hash = 59 * hash + Objects.hashCode(this.id);
-    return hash;
   }
 }
