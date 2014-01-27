@@ -45,7 +45,7 @@ public class CategoryBrand implements Serializable {
     sb.append("{");
     sb.append("id:").append(id).append(",");
     sb.append("category:").append(category).append(",");
-    sb.append("brand:").append(brand).append(",");
+    sb.append("brand:").append(brand);
     sb.append("}");
     return sb.toString();
   }

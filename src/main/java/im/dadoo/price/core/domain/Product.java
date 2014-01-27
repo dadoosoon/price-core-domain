@@ -46,7 +46,7 @@ public class Product implements Serializable {
     sb.append("{");
     sb.append("id:").append(id).append(",");
     sb.append("name:").append(name).append(",");
-    sb.append("categoryBrand:").append(getCategoryBrand()).append(",");
+    sb.append("categoryBrand:").append(getCategoryBrand());
     sb.append("}");
     return sb.toString();
   }

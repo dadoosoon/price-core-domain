@@ -61,7 +61,7 @@ public class Record implements Serializable {
     sb.append("price:").append(price).append(",");
     sb.append("stock:").append(stock).append(",");
     sb.append("link:").append(link).append(",");
-    sb.append("datetime:").append(datetime).append(",");
+    sb.append("datetime:").append(datetime);
     sb.append("}");
     return sb.toString();
   }
