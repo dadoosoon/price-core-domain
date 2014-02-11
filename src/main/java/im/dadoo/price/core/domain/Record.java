@@ -34,6 +34,9 @@ public class Record implements Serializable {
   @Column(nullable = true)
   private Integer stock;
   
+  @Column(length = 512, nullable = true)
+  private String promotion;
+  
   @ManyToOne
   @JoinColumn(name = "link_id", nullable = false)
   private Link link;
@@ -43,11 +46,12 @@ public class Record implements Serializable {
   
   public Record() {}
   
-  public static Record create(Double price, Integer stock, 
+  public static Record create(Double price, Integer stock, String promotion,
           Link link, Long datetime) {
     Record record = new Record();
     record.price = price;
     record.stock = stock;
+    record.promotion = promotion;
     record.link = link;
     record.datetime = datetime;
     return record;
@@ -60,6 +64,7 @@ public class Record implements Serializable {
     sb.append("id:").append(id).append(",");
     sb.append("price:").append(price).append(",");
     sb.append("stock:").append(stock).append(",");
+    sb.append("promotion:").append(promotion).append(",");
     sb.append("link:").append(link).append(",");
     sb.append("datetime:").append(datetime);
     sb.append("}");
@@ -135,5 +140,19 @@ public class Record implements Serializable {
   public void setDatetime(Long datetime) {
     this.datetime = datetime;
   }
- 
+
+  /**
+   * @return the promotion
+   */
+  public String getPromotion() {
+    return promotion;
+  }
+
+  /**
+   * @param promotion the promotion to set
+   */
+  public void setPromotion(String promotion) {
+    this.promotion = promotion;
+  }
+  
 }

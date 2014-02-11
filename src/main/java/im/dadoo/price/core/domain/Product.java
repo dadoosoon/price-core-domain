@@ -27,15 +27,19 @@ public class Product implements Serializable {
   @Column(length = 100, nullable = false, unique = true)
   private String name;
   
+  @Column(name = "thumbnail_path", length = 100, nullable = true)
+  private String thumbnailPath;
+  
   @ManyToOne
   @JoinColumn(name = "category_brand_id", nullable = false)
   private CategoryBrand categoryBrand;
   
   public Product() {}
   
-  public static Product create(String name, CategoryBrand categoryBrand) {
+  public static Product create(String name, String thumbnailPath, CategoryBrand categoryBrand) {
     Product product = new Product();
-    product.name = name;
+    product.setName(name);
+    product.setThumbnailPath(thumbnailPath);
     product.setCategoryBrand(categoryBrand);
     return product;
   }
@@ -46,6 +50,7 @@ public class Product implements Serializable {
     sb.append("{");
     sb.append("id:").append(id).append(",");
     sb.append("name:").append(name).append(",");
+    sb.append("thumbnailPath:").append(getThumbnailPath()).append(",");
     sb.append("categoryBrand:").append(getCategoryBrand());
     sb.append("}");
     return sb.toString();
@@ -93,4 +98,19 @@ public class Product implements Serializable {
     this.categoryBrand = categoryBrand;
   }
 
+  /**
+   * @return the thumbnailPath
+   */
+  public String getThumbnailPath() {
+    return thumbnailPath;
+  }
+
+  /**
+   * @param thumbnailPath the thumbnailPath to set
+   */
+  public void setThumbnailPath(String thumbnailPath) {
+    this.thumbnailPath = thumbnailPath;
+  }
+
+  
 }

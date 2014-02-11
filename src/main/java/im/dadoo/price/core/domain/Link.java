@@ -29,6 +29,9 @@ public class Link implements Serializable {
 
   @Column(nullable = false)
   private String url;
+  
+  @Column(length = 50, nullable = true)
+  private String remark;
 
   @ManyToOne
   @JoinColumn(name = "seller_id", nullable = false)
@@ -40,11 +43,12 @@ public class Link implements Serializable {
   
   public Link() {}
   
-  public static Link create(String url, Integer amount, 
+  public static Link create(String url, Integer amount, String remark, 
           Seller seller, Product product) {
     Link link = new Link();
     link.setUrl(url);
     link.setAmount(amount);
+    link.setRemark(remark);
     link.setSeller(seller);
     link.setProduct(product);
     return link;
@@ -56,6 +60,7 @@ public class Link implements Serializable {
     sb.append("{");
     sb.append("id:").append(id).append(",");
     sb.append("amount:").append(amount).append(",");
+    sb.append("remark:").append(remark).append(",");
     sb.append("url:").append(url).append(",");
     sb.append("product:").append(product).append(",");
     sb.append("seller:").append(seller);
@@ -132,4 +137,19 @@ public class Link implements Serializable {
   public void setProduct(Product product) {
     this.product = product;
   }
+
+  /**
+   * @return the remark
+   */
+  public String getRemark() {
+    return remark;
+  }
+
+  /**
+   * @param remark the remark to set
+   */
+  public void setRemark(String remark) {
+    this.remark = remark;
+  }
+  
 }
