@@ -7,36 +7,23 @@
 package im.dadoo.price.core.domain;
 
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "t_category")
+//t_category
 public class Category implements Serializable {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
-  @Column(length = 50, nullable = false, unique = true)
+  //length = 50, nullable = false, unique = true
   private String name;
-
-  @ManyToOne
-  @JoinColumn(name = "sup_id", nullable = true)
-  private Category sup;
+  
+  private Integer supId;
   
   public Category() {}
   
-  public static Category create(String name, Category sup) {
+  public static Category create(String name, Integer supId) {
     Category category = new Category();
     category.name = name;
-    category.sup = sup;
+    category.supId = supId;
     return category;
   }
   
@@ -44,9 +31,9 @@ public class Category implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("{");
-    sb.append("id:").append(id).append(",");
-    sb.append("name:").append(name).append(",");
-    sb.append("sup:").append(sup);
+    sb.append("id:").append(getId()).append(",");
+    sb.append("name:").append(getName()).append(",");
+    sb.append("supId:").append(supId);
     sb.append("}");
     return sb.toString();
   }
@@ -66,20 +53,6 @@ public class Category implements Serializable {
   }
 
   /**
-   * @return the sup
-   */
-  public Category getSup() {
-    return sup;
-  }
-
-  /**
-   * @param sup the sup to set
-   */
-  public void setSup(Category sup) {
-    this.sup = sup;
-  }
-
-  /**
    * @return the id
    */
   public Integer getId() {
@@ -91,6 +64,20 @@ public class Category implements Serializable {
    */
   public void setId(Integer id) {
     this.id = id;
+  }
+
+  /**
+   * @return the supId
+   */
+  public Integer getSupId() {
+    return supId;
+  }
+
+  /**
+   * @param supId the supId to set
+   */
+  public void setSupId(Integer supId) {
+    this.supId = supId;
   }
 
 }

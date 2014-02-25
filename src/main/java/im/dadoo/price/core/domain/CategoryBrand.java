@@ -7,45 +7,33 @@
 package im.dadoo.price.core.domain;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "t_category_brand")
+//t_category_brand
 public class CategoryBrand implements Serializable {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
-  @ManyToOne
-  @JoinColumn(name = "category_id", nullable = false)
-  private Category category;
+  //name = "category_id", nullable = false
+  private Integer categoryId;
 
-  @ManyToOne
-  @JoinColumn(name = "brand_id", nullable = false)
-  private Brand brand;
+  //name = "brand_id", nullable = false
+  private Integer brandId;
   
   public CategoryBrand() {}
   
-  public static CategoryBrand create(Category category, Brand brand) {
+  public static CategoryBrand create(Integer categoryId, Integer brandId) {
     CategoryBrand cb = new CategoryBrand();
-    cb.setCategory(category);
-    cb.setBrand(brand);
+    cb.setCategoryId(categoryId);
+    cb.setBrandId(brandId);
     return cb;
   }
 
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("{");
-    sb.append("id:").append(id).append(",");
-    sb.append("category:").append(category).append(",");
-    sb.append("brand:").append(brand);
+    sb.append("id:").append(getId()).append(",");
+    sb.append("categoryId:").append(getCategoryId()).append(",");
+    sb.append("brandId:").append(getBrandId());
     sb.append("}");
     return sb.toString();
   }
@@ -64,31 +52,32 @@ public class CategoryBrand implements Serializable {
   }
 
   /**
-   * @return the category
+   * @return the categoryId
    */
-  public Category getCategory() {
-    return category;
+  public Integer getCategoryId() {
+    return categoryId;
   }
 
   /**
-   * @param category the category to set
+   * @param categoryId the categoryId to set
    */
-  public void setCategory(Category category) {
-    this.category = category;
+  public void setCategoryId(Integer categoryId) {
+    this.categoryId = categoryId;
   }
 
   /**
-   * @return the brand
+   * @return the brandId
    */
-  public Brand getBrand() {
-    return brand;
+  public Integer getBrandId() {
+    return brandId;
   }
 
   /**
-   * @param brand the brand to set
+   * @param brandId the brandId to set
    */
-  public void setBrand(Brand brand) {
-    this.brand = brand;
+  public void setBrandId(Integer brandId) {
+    this.brandId = brandId;
   }
+
   
 }

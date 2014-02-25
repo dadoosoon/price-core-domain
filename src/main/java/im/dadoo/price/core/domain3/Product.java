@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package im.dadoo.price.core.domain;
+package im.dadoo.price.core.domain3;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -16,27 +16,31 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-//name = "t_product"
+@Entity
+@Table(name = "t_product")
 public class Product implements Serializable {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
-  //length = 100, nullable = false, unique = true
+  @Column(length = 100, nullable = false, unique = true)
   private String name;
   
-  //name = "thumbnail_path", length = 100, nullable = true
+  @Column(name = "thumbnail_path", length = 100, nullable = true)
   private String thumbnailPath;
   
-  //name = "category_brand_id", nullable = false
-  private Integer categoryBrandId;
+  @ManyToOne
+  @JoinColumn(name = "category_brand_id", nullable = false)
+  private CategoryBrand categoryBrand;
   
   public Product() {}
   
-  public static Product create(String name, String thumbnailPath, Integer categoryBrandId) {
+  public static Product create(String name, String thumbnailPath, CategoryBrand categoryBrand) {
     Product product = new Product();
     product.setName(name);
     product.setThumbnailPath(thumbnailPath);
-    product.setCategoryBrandId(categoryBrandId);
+    product.setCategoryBrand(categoryBrand);
     return product;
   }
   
@@ -47,7 +51,7 @@ public class Product implements Serializable {
     sb.append("id:").append(id).append(",");
     sb.append("name:").append(name).append(",");
     sb.append("thumbnailPath:").append(getThumbnailPath()).append(",");
-    sb.append("categoryBrandId:").append(getCategoryBrandId());
+    sb.append("categoryBrand:").append(getCategoryBrand());
     sb.append("}");
     return sb.toString();
   }
@@ -81,6 +85,20 @@ public class Product implements Serializable {
   }
 
   /**
+   * @return the categoryBrand
+   */
+  public CategoryBrand getCategoryBrand() {
+    return categoryBrand;
+  }
+
+  /**
+   * @param categoryBrand the categoryBrand to set
+   */
+  public void setCategoryBrand(CategoryBrand categoryBrand) {
+    this.categoryBrand = categoryBrand;
+  }
+
+  /**
    * @return the thumbnailPath
    */
   public String getThumbnailPath() {
@@ -94,18 +112,5 @@ public class Product implements Serializable {
     this.thumbnailPath = thumbnailPath;
   }
 
-  /**
-   * @return the categoryBrandId
-   */
-  public Integer getCategoryBrandId() {
-    return categoryBrandId;
-  }
-
-  /**
-   * @param categoryBrandId the categoryBrandId to set
-   */
-  public void setCategoryBrandId(Integer categoryBrandId) {
-    this.categoryBrandId = categoryBrandId;
-  }
-
+  
 }

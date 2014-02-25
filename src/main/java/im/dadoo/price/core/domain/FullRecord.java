@@ -7,53 +7,44 @@
 package im.dadoo.price.core.domain;
 
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  *
  * @author codekitten
  */
-@Entity
-@Table(name = "t_full_record")
+
+//name = "t_full_record"
 public class FullRecord implements Serializable {
   
-  @Id
   private Integer id;
   
-  @Column(name = "seller_name", length = 50, nullable = false)
+  //name = "seller_name", length = 50, nullable = false
   private String sellerName;
   
-  @Column(name = "product_name", length = 100, nullable = false)
+  //name = "product_name", length = 100, nullable = false
   private String productName;
   
-  @Column
   private Integer amount;
   
-  @Column(length = 200, nullable = false, unique = true)
+  //length = 200, nullable = false, unique = true
   private String url;
   
-  @Column
   private Double price;
   
-  @Column
   private Integer stock;
   
-  @Column(name = "max_price")
+  //name = "max_price"
   private Double maxPrice;
   
-  @Column(name = "min_price")
+  //name = "min_price"
   private Double minPrice;
   
-  @Column(length = 50)
+  //length = 50
   private String remark;
   
-  @Column(length = 512)
+  //length = 512
   private String promotion;
   
-  @Column
   private Long datetime;
   
   public FullRecord() {}
@@ -77,6 +68,25 @@ public class FullRecord implements Serializable {
     return fullRecord;
   }
 
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("{");
+    sb.append("id:").append(getId()).append(",");
+    sb.append("sellerName:").append(getSellerName()).append(",");
+    sb.append("productName:").append(getProductName()).append(",");
+    sb.append("amount:").append(getAmount()).append(",");
+    sb.append("url:").append(getUrl()).append(",");
+    sb.append("price:").append(getPrice()).append(",");
+    sb.append("stock:").append(getStock()).append(",");
+    sb.append("maxPrice:").append(getMaxPrice()).append(",");
+    sb.append("minPrice:").append(getMinPrice()).append(",");
+    sb.append("remark:").append(getRemark()).append(",");
+    sb.append("promotion:").append(getPromotion()).append(",");
+    sb.append("datetime:").append(getDatetime());
+    sb.append("}");
+    return sb.toString();
+  }
   /**
    * @return the id
    */

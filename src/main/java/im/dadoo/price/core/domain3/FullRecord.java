@@ -4,47 +4,56 @@
  * and open the template in the editor.
  */
 
-package im.dadoo.price.core.domain2;
+package im.dadoo.price.core.domain3;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author codekitten
  */
-
-//name = "t_full_record"
+@Entity
+@Table(name = "t_full_record")
 public class FullRecord implements Serializable {
   
+  @Id
   private Integer id;
   
-  //name = "seller_name", length = 50, nullable = false
+  @Column(name = "seller_name", length = 50, nullable = false)
   private String sellerName;
   
-  //name = "product_name", length = 100, nullable = false
+  @Column(name = "product_name", length = 100, nullable = false)
   private String productName;
   
+  @Column
   private Integer amount;
   
-  //length = 200, nullable = false, unique = true
+  @Column(length = 200, nullable = false, unique = true)
   private String url;
   
+  @Column
   private Double price;
   
+  @Column
   private Integer stock;
   
-  //name = "max_price"
+  @Column(name = "max_price")
   private Double maxPrice;
   
-  //name = "min_price"
+  @Column(name = "min_price")
   private Double minPrice;
   
-  //length = 50
+  @Column(length = 50)
   private String remark;
   
-  //length = 512
+  @Column(length = 512)
   private String promotion;
   
+  @Column
   private Long datetime;
   
   public FullRecord() {}

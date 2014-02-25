@@ -4,43 +4,55 @@
  * and open the template in the editor.
  */
 
-package im.dadoo.price.core.domain;
+package im.dadoo.price.core.domain3;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author codekitten
  */
-//name = "t_record"
+@Entity
+@Table(name = "t_record")
 public class Record implements Serializable {
   
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
   
-  //nullable = true
+  @Column(nullable = true)
   private Double price;
   
-  //nullable = true
+  @Column(nullable = true)
   private Integer stock;
   
-  //length = 512, nullable = true
+  @Column(length = 512, nullable = true)
   private String promotion;
   
-  //name = "link_id", nullable = false
-  private Integer linkId;
+  @ManyToOne
+  @JoinColumn(name = "link_id", nullable = false)
+  private Link link;
   
-  //nullable = false
+  @Column(nullable = false)
   private Long datetime;
   
   public Record() {}
   
   public static Record create(Double price, Integer stock, String promotion,
-          Integer linkId, Long datetime) {
+          Link link, Long datetime) {
     Record record = new Record();
     record.price = price;
     record.stock = stock;
     record.promotion = promotion;
-    record.linkId = linkId;
+    record.link = link;
     record.datetime = datetime;
     return record;
   }
@@ -53,7 +65,7 @@ public class Record implements Serializable {
     sb.append("price:").append(price).append(",");
     sb.append("stock:").append(stock).append(",");
     sb.append("promotion:").append(promotion).append(",");
-    sb.append("linkId:").append(getLinkId()).append(",");
+    sb.append("link:").append(link).append(",");
     sb.append("datetime:").append(datetime);
     sb.append("}");
     return sb.toString();
@@ -102,6 +114,20 @@ public class Record implements Serializable {
   }
 
   /**
+   * @return the link
+   */
+  public Link getLink() {
+    return link;
+  }
+
+  /**
+   * @param link the link to set
+   */
+  public void setLink(Link link) {
+    this.link = link;
+  }
+
+  /**
    * @return the datetime
    */
   public Long getDatetime() {
@@ -127,20 +153,6 @@ public class Record implements Serializable {
    */
   public void setPromotion(String promotion) {
     this.promotion = promotion;
-  }
-
-  /**
-   * @return the linkId
-   */
-  public Integer getLinkId() {
-    return linkId;
-  }
-
-  /**
-   * @param linkId the linkId to set
-   */
-  public void setLinkId(Integer linkId) {
-    this.linkId = linkId;
   }
   
 }

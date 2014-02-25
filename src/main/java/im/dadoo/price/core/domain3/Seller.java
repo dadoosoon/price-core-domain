@@ -4,19 +4,28 @@
  * and open the template in the editor.
  */
 
-package im.dadoo.price.core.domain;
+package im.dadoo.price.core.domain3;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-//name = "t_seller"
+@Entity
+@Table(name = "t_seller")
 public class Seller implements Serializable {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
   
-  //length = 50, nullable = false, unique = true
+  @Column(length = 50, nullable = false, unique = true)
   private String name;
 
-  //length = 100, nullable = true
+  @Column(length = 100, nullable = true)
   private String site;
   
   public Seller() {}
@@ -32,7 +41,7 @@ public class Seller implements Serializable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("{");
-    sb.append("id:").append(getId()).append(",");
+    sb.append("id:").append(id).append(",");
     sb.append("name:").append(getName()).append(",");
     sb.append("site:").append(getSite());
     sb.append("}");

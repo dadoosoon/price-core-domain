@@ -4,40 +4,53 @@
  * and open the template in the editor.
  */
 
-package im.dadoo.price.core.domain2;
+package im.dadoo.price.core.domain3;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-//name = "t_link"
+@Entity
+@Table(name = "t_link")
 public class Link implements Serializable {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
-  //nullable = false
+  @Column(nullable = false)
   private Integer amount;
 
-  //nullable = false
+  @Column(nullable = false)
   private String url;
   
-  //length = 50, nullable = true
+  @Column(length = 50, nullable = true)
   private String remark;
 
-  //name = "seller_id", nullable = false
-  private Integer sellerId;
+  @ManyToOne
+  @JoinColumn(name = "seller_id", nullable = false)
+  private Seller seller;
 
-  //name = "product_id", nullable = false
-  private Integer productId;
+  @ManyToOne
+  @JoinColumn(name = "product_id", nullable = false)
+  private Product product;
   
   public Link() {}
   
   public static Link create(String url, Integer amount, String remark, 
-          Integer sellerId, Integer productId) {
+          Seller seller, Product product) {
     Link link = new Link();
     link.setUrl(url);
     link.setAmount(amount);
     link.setRemark(remark);
-    link.setSellerId(sellerId);
-    link.setProductId(productId);
+    link.setSeller(seller);
+    link.setProduct(product);
     return link;
   }
   
@@ -49,8 +62,8 @@ public class Link implements Serializable {
     sb.append("amount:").append(amount).append(",");
     sb.append("remark:").append(remark).append(",");
     sb.append("url:").append(url).append(",");
-    sb.append("productId:").append(getProductId()).append(",");
-    sb.append("seller:").append(getSellerId());
+    sb.append("product:").append(product).append(",");
+    sb.append("seller:").append(seller);
     sb.append("}");
     return sb.toString();
   }
@@ -97,6 +110,33 @@ public class Link implements Serializable {
     this.url = url;
   }
 
+  /**
+   * @return the seller
+   */
+  public Seller getSeller() {
+    return seller;
+  }
+
+  /**
+   * @param seller the seller to set
+   */
+  public void setSeller(Seller seller) {
+    this.seller = seller;
+  }
+
+  /**
+   * @return the product
+   */
+  public Product getProduct() {
+    return product;
+  }
+
+  /**
+   * @param product the product to set
+   */
+  public void setProduct(Product product) {
+    this.product = product;
+  }
 
   /**
    * @return the remark
@@ -110,34 +150,6 @@ public class Link implements Serializable {
    */
   public void setRemark(String remark) {
     this.remark = remark;
-  }
-
-  /**
-   * @return the sellerId
-   */
-  public Integer getSellerId() {
-    return sellerId;
-  }
-
-  /**
-   * @param sellerId the sellerId to set
-   */
-  public void setSellerId(Integer sellerId) {
-    this.sellerId = sellerId;
-  }
-
-  /**
-   * @return the productId
-   */
-  public Integer getProductId() {
-    return productId;
-  }
-
-  /**
-   * @param productId the productId to set
-   */
-  public void setProductId(Integer productId) {
-    this.productId = productId;
   }
   
 }
