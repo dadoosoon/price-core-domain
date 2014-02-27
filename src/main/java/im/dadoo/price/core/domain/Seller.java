@@ -19,6 +19,9 @@ public class Seller implements Serializable {
   //length = 100, nullable = true
   private String site;
   
+  //default = 15000
+  private Long delay;
+  
   public Seller() {}
   
   public static Seller create(String name, String site) {
@@ -34,7 +37,8 @@ public class Seller implements Serializable {
     sb.append("{");
     sb.append("id:").append(getId()).append(",");
     sb.append("name:").append(getName()).append(",");
-    sb.append("site:").append(getSite());
+    sb.append("site:").append(getSite()).append(",");
+    sb.append("delay:").append(getDelay());
     sb.append("}");
     return sb.toString();
   }
@@ -79,6 +83,20 @@ public class Seller implements Serializable {
    */
   public void setSite(String site) {
     this.site = site;
+  }
+
+  /**
+   * @return the delay
+   */
+  public Long getDelay() {
+    return delay;
+  }
+
+  /**
+   * @param delay the delay to set
+   */
+  public void setDelay(Long delay) {
+    this.delay = delay;
   }
   
 }
